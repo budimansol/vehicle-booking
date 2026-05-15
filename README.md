@@ -124,7 +124,7 @@ Tracks important activities:
 ## 1. Clone Repository
 
 ```bash id="u8d3n1"
-git clone <repository-url>
+git clone https://github.com/budimansol/vehicle-booking.git
 ```
 
 ---
@@ -252,10 +252,14 @@ Password : password
 
 # Roles
 
-| Role     | Access               |
-| -------- | -------------------- |
-| Admin    | Full system access   |
-| Approver | Approval access only |
+|   Feature   |   Admin  | Approver |
+| ----------- | ---------|----------|
+| Dashboard   |     V    |     X    |
+| Vehicle     |     V    |     X    |
+| Driver      |     V    |     X    |
+| Booking     |     V    |     X    |
+| Approval    |     X    |     V    |
+| ActivityLog |     V    |     X    |
 
 ---
 
