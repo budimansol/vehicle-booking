@@ -75,6 +75,8 @@ class VehicleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $vehicle = Vehicle::findOrFail($id); $vehicle->delete(); 
+        activityLog( 'DELETE_VEHICLE', 'Menghapus kendaraan ID: ' . $vehicle->id ); 
+        return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil dihapus.');
     }
 }

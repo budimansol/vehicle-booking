@@ -2,55 +2,127 @@
 
 @section('content')
 
-<h1 class="text-2xl font-bold mb-4">
-    Data Kendaraan
-</h1>
+<div class="flex items-center justify-between mb-6">
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800">
+            Vehicle Management
+        </h1>
 
-<a
-    href="{{ route('vehicles.create') }}"
-    class="bg-blue-500 text-black px-4 py-2"
->
-    Tambah Kendaraan
-</a>
+        <p class="text-gray-500 mt-1">
+            Kelola data kendaraan perusahaan
+        </p>
+    </div>
 
-<table class="table-auto w-full mt-4 border">
+    <a
+        href="{{ route('vehicles.create') }}"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl shadow-md transition duration-200 font-semibold"
+    >
+        + Tambah Kendaraan
+    </a>
+</div>
 
-    <thead>
-        <tr>
-            <th class="border p-2">Plat</th>
-            <th class="border p-2">Nama</th>
-            <th class="border p-2">Tipe</th>
-            <th class="border p-2">Action</th>
-        </tr>
-    </thead>
+@if(session('success'))
+<div class="bg-green-100 border border-green-300 text-green-700 px-4 py-3 rounded-xl mb-6">
+    {{ session('success') }}
+</div>
+@endif
 
-    <tbody>
+<div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+    <div class="overflow-x-auto">
 
-        @foreach($vehicles as $vehicle)
+        <table class="w-full">
 
-        <tr>
-            <td class="border p-2">
-                {{ $vehicle->plate_number }}
-            </td>
+            <thead class="bg-gray-100 text-gray-700 uppercase text-sm">
+                <tr>
+                    <th class="px-6 py-4 text-left">
+                        Plat Nomor
+                    </th>
 
-            <td class="border p-2">
-                {{ $vehicle->vehicle_name }}
-            </td>
+                    <th class="px-6 py-4 text-left">
+                        Nama Kendaraan
+                    </th>
 
-            <td class="border p-2">
-                {{ $vehicle->type }}
-            </td>
-            <td>
-                <a href="{{ route('vehicles.edit', $vehicle->id) }}">
-                Edit
-                </a>
-            </td>
-        </tr>
+                    <th class="px-6 py-4 text-left">
+                        Tipe
+                    </th>
 
-        @endforeach
+                    <th class="px-6 py-4 text-center">
+                        Action
+                    </th>
+                </tr>
+            </thead>
 
-    </tbody>
+            <tbody class="divide-y divide-gray-200">
 
-</table>
+                @forelse($vehicles as $vehicle)
+
+                <tr class="hover:bg-gray-50 transition duration-200">
+
+                    <td class="px-6 py-4 font-semibold text-gray-800">
+                        {{ strtoupper($vehicle->plate_number) }}
+                    </td>
+
+                    <td class="px-6 py-4 text-gray-700">
+                        {{ $vehicle->vehicle_name }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <span
+                            class="px-3 py-1 rounded-full text-sm font-semibold
+                            {{ $vehicle->type == 'angkutan_orang'
+                                ? 'bg-blue-100 text-blue-700'
+                                : 'bg-green-100 text-green-700'
+                            }}"
+                        >
+                            {{ strtoupper(str_replace('_', ' ', $vehicle->type)) }}
+                        </span>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-2">
+
+                            <a
+                                href="{{ route('vehicles.edit', $vehicle->id) }}"
+                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg shadow transition"
+                            >
+                                Edit
+                            </a>
+
+                            <form
+                                action="{{ route('vehicles.destroy', $vehicle->id) }}"
+                                method="POST"
+                            >
+                                @csrf
+                                @method('DELETE')
+
+                                <button
+                                    onclick="return confirm('Yakin hapus kendaraan?')"
+                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow transition"
+                                >
+                                    Delete
+                                </button>
+                            </form>
+
+                        </div>
+                    </td>
+
+                </tr>
+
+                @empty
+
+                <tr>
+                    <td colspan="4" class="text-center py-10 text-gray-500">
+                        Data kendaraan belum tersedia
+                    </td>
+                </tr>
+
+                @endforelse
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
 
 @endsection

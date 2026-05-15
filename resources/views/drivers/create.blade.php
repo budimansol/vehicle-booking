@@ -2,54 +2,81 @@
 
 @section('content')
 
-<h1 class="text-2xl font-bold mb-4">
-    Tambah Driver
-</h1>
+<div class="max-w-3xl mx-auto">
 
-<form
-    action="{{ route('drivers.store') }}"
-    method="POST"
-    class="space-y-4"
->
+    <div class="flex items-center justify-between mb-6">
 
-    @csrf
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800">
+                Tambah Driver
+            </h1>
 
-    <div>
+            <p class="text-gray-500 mt-1">
+                Tambahkan data driver perusahaan
+            </p>
+        </div>
 
-        <label class="block mb-1">
-            Nama Driver
-        </label>
-
-        <input
-            type="text"
-            name="name"
-            class="border p-2 w-full rounded"
-            required
+        <a
+            href="{{ route('drivers.index') }}"
+            class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-xl transition"
         >
+            Kembali
+        </a>
 
     </div>
 
-    <div>
+    <div class="bg-white rounded-2xl shadow-lg p-8">
 
-        <label class="block mb-1">
-            No HP
-        </label>
-
-        <input
-            type="text"
-            name="phone_number"
-            class="border p-2 w-full rounded"
-            required
+        <form
+            action="{{ route('drivers.store') }}"
+            method="POST"
+            class="space-y-5"
         >
+
+            @csrf
+
+            <div>
+
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    Nama Driver
+                </label>
+
+                <input
+                    type="text"
+                    name="name"
+                    class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Masukkan nama driver"
+                    required
+                >
+
+            </div>
+
+            <div>
+
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    No HP
+                </label>
+
+                <input
+                    type="text"
+                    name="phone_number"
+                    class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Masukkan nomor HP"
+                    required
+                >
+
+            </div>
+
+            <button
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-md transition duration-200"
+            >
+                Simpan Driver
+            </button>
+
+        </form>
 
     </div>
 
-    <button
-        class="bg-blue-500 text-white px-4 py-2 rounded"
-    >
-        Simpan
-    </button>
-
-</form>
+</div>
 
 @endsection
