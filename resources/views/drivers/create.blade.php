@@ -1,0 +1,55 @@
+@extends('layouts.app')
+
+@section('content')
+
+<h1 class="text-2xl font-bold mb-4">
+    Tambah Driver
+</h1>
+
+<form
+    action="{{ route('drivers.store') }}"
+    method="POST"
+    class="space-y-4"
+>
+
+    @csrf
+
+    <div>
+
+        <label class="block mb-1">
+            Nama Driver
+        </label>
+
+        <input
+            type="text"
+            name="name"
+            class="border p-2 w-full rounded"
+            required
+        >
+
+    </div>
+
+    <div>
+
+        <label class="block mb-1">
+            No HP
+        </label>
+
+        <input
+            type="text"
+            name="phone_number"
+            class="border p-2 w-full rounded"
+            required
+        >
+
+    </div>
+
+    <button
+        class="bg-blue-500 text-white px-4 py-2 rounded"
+    >
+        Simpan
+    </button>
+
+</form>
+
+@endsection

@@ -1,59 +1,286 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Vehicle Booking Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Description
 
-## About Laravel
+Vehicle Booking Management System is a web-based application built using Laravel to manage company vehicle reservations efficiently.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The application supports:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* Vehicle management
+* Driver management
+* Vehicle booking
+* Multi-level approval workflow
+* Dashboard analytics
+* Excel export
+* Activity logging
+* Role-based authorization
+* Booking conflict validation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+# Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Authentication
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Login
+* Logout
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Role Management
 
-### Premium Partners
+### Admin
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+* Manage vehicles
+* Manage drivers
+* Create bookings
+* Export booking reports
+* View dashboard analytics
+* View activity logs
 
-## Contributing
+### Approver
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* Approve booking
+* Reject booking
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Approval Workflow
 
-## Security Vulnerabilities
+```text id="hbp2m8"
+Pending
+↓
+Approved Level 1
+↓
+Approved
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Or:
 
-## License
+```text id="bqx4v7"
+Pending
+↓
+Rejected
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+# Booking Validation
+
+The system prevents:
+
+* Vehicle double booking
+* Driver double booking
+
+---
+
+# Dashboard Features
+
+* Total vehicles
+* Available vehicles
+* Total drivers
+* Pending bookings
+* Approved bookings
+* Rejected bookings
+* Booking statistics chart
+
+---
+
+# Export Excel
+
+Supports:
+
+* Booking export to Excel
+* Professional formatting
+* Auto column width
+* Custom headings
+
+---
+
+# Activity Log
+
+Tracks important activities:
+
+* Create booking
+* Approve booking
+* Reject booking
+* Export booking report
+
+---
+
+# Tech Stack
+
+* PHP 8.2
+* Laravel 12
+* MySQL / MariaDB
+* Tailwind CSS
+* Chart.js
+* Laravel Excel
+
+---
+
+# Installation
+
+## 1. Clone Repository
+
+```bash id="u8d3n1"
+git clone <repository-url>
+```
+
+---
+
+## 2. Enter Project Directory
+
+```bash id="w7m2q4"
+cd vehicle-booking
+```
+
+---
+
+## 3. Install PHP Dependencies
+
+```bash id="r4k9m2"
+composer install
+```
+
+---
+
+## 4. Install Frontend Dependencies
+
+```bash id="v5n8m1"
+npm install
+```
+
+---
+
+## 5. Copy Environment File
+
+```bash id="q2m7v5"
+cp .env.example .env
+```
+
+---
+
+## 6. Generate Application Key
+
+```bash id="m1k8q3"
+php artisan key:generate
+```
+
+---
+
+## 7. Configure Database
+
+Edit `.env` file:
+
+```env id="x7n4m2"
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=vehicle_booking
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+## 8. Run Migration and Seeder
+
+```bash id="k8m3q1"
+php artisan migrate:fresh --seed
+```
+
+---
+
+## 9. Run Vite
+
+```bash id="n6v2m5"
+npm run dev
+```
+
+---
+
+## 10. Run Laravel Server
+
+```bash id="p4m8q7"
+php artisan serve
+```
+
+---
+
+# Default Accounts
+
+## Admin
+
+```text id="r9m2v4"
+Email    : admin@mail.com
+Password : password
+```
+
+---
+
+## Approver 1
+
+```text id="u3n8k5"
+Email    : approver1@mail.com
+Password : password
+```
+
+---
+
+## Approver 2
+
+```text id="x1m7q2"
+Email    : approver2@mail.com
+Password : password
+```
+
+---
+
+# Main Routes
+
+| Route          | Description        |
+| -------------- | ------------------ |
+| /dashboard     | Dashboard          |
+| /vehicles      | Vehicle Management |
+| /drivers       | Driver Management  |
+| /bookings      | Booking Management |
+| /approvals     | Booking Approval   |
+| /activity-logs | Activity Logs      |
+
+---
+
+# Roles
+
+| Role     | Access               |
+| -------- | -------------------- |
+| Admin    | Full system access   |
+| Approver | Approval access only |
+
+---
+
+# Project Structure
+
+```text id="t7m4q1"
+app/
+├── Http/
+│   ├── Controllers/
+│   ├── Middleware/
+│
+├── Models/
+│
+├── Exports/
+│
+resources/
+├── views/
+│
+database/
+├── migrations/
+├── seeders/
+```
+
+---
+
+# Author
+
+Developed by Dzakky Budiman
